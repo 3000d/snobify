@@ -1,3 +1,81 @@
-.html {
+:root {
+    --red-color: #EB1B32;
+    --blue-color: #2B2068;
+    --green-color: #00DA72;
+}
 
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--blue-color);
+    font-family: "HK Grotesk", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    position: relative;
+}
+
+body {
+    align-items: center;
+    background: url("../img/cover.jpg") no-repeat center center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    font-size: 5rem;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+}
+
+.header h1 span {
+    margin-left: 30px;
+    margin-top: -10px;
+    position: relative;
+}
+
+.header h1 span:after {
+    background-color: white;
+    bottom: 0;
+    content: '';
+    height: 2px;
+    position: absolute;
+    left: 0;
+    right: 70px;
+}
+
+.header h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: center;
+    width: 500px;
+}
+
+.main {
+    max-width: 740px;
+    text-align: center;
+}
+
+.desc {
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.button {
+    background-color: var(--green-color);
+    border-radius: 5px;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    padding: .9rem 2rem;
+    text-align: center;
+    text-decoration: none;
 }
