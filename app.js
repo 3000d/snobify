@@ -109,7 +109,8 @@ const renderList = async (req) => {
   return {
     popular_track_count,
     unpopular_track_count,
-    snobiness_score
+    snobiness_score,
+    cta_text: generateCtaText(snobiness_score)
   }
 }
 
@@ -131,12 +132,30 @@ const renderDeletion = async () => {
   return removeCount
 }
 
+const generateCtaText = (score) => {
+  if (score <= 39) {
+    return "You enjoy music everyone likes, boring. Why not delete all your popular tracks and be hip ?";
+  } else if (score > 39 && score <= 79) {
+    return "Not bad ! But you're still a long way from being hip. Take a leap and delete all those boring popular tracks !";
+  } else if (score > 79) {
+    return "Wow so snob. Now you just have to delete what's left of boring tracks in your very hip playlists. Go ahead, you want to.";
+  }
+};
+
 
 app.get('/test/index', (req, res) => {
   res.render('index');
 });
 app.get('/test/session', (req, res) => {
-  res.render('session');
+  const score = Math.floor(Math.random() * 110);
+  res.render('session', {
+    data: {
+      popular_track_count: 7340,
+      unpopular_track_count: 1200,
+      snobiness_score: score,
+      cta_text: generateCtaText(score)
+    }
+  });
 });
 app.get('/test/confirm', (req, res) => {
   res.render('confirm');
