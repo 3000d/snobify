@@ -47,8 +47,13 @@ app.get('/callback', async (req, res) => {
   const token = await spotifyApi.authorizationCodeGrant(req.query.code)
   req.session.token = token.body.access_token
   await spotifyApi.setAccessToken(req.session.token)
-  const html = await
-  // res.send(html)
+  res.redirect('/session')
+
+})
+
+app.get('/session', async (req, res) => {
+  if (!req.session.token) res.status(403).send("Not Allowed!")
+
   res.render('session', {
     data: renderList()
   })
