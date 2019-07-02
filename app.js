@@ -3,6 +3,8 @@ const express = require('express')
 const session = require('express-session')
 const path = require('path')
 const dotenv = require('dotenv')
+const twit = require('twig')
+
 dotenv.config()
 
 const scopes = ['user-read-private', 'user-read-email', 'playlist-read-private', 'playlist-modify-private', 'playlist-modify-public'],
@@ -16,6 +18,8 @@ const spotifyApi = new SpotifyWebApi({
   clientSecret
 })
 
+const port = 3000
+
 const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
 
 const sess = {
@@ -25,11 +29,17 @@ const sess = {
 }
 
 const app = express()
-app.use(session(sess))
-app.use("/dist", express.static(__dirname + '/client/dist'))
-const port = 3000
+app.use(session(sess)) //add session
+app.use("/dist", express.static(__dirname + '/client/dist')) //serve static files
+app.set('views', path.join(__dirname, '/client/views')) //add twig
+app.set('view engine', 'twig')
+app.set('twig options', { allow_async: true })
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + "/client/index.html")))
+app.get('/', (req, res) => {
+  res.render('index', {
+    authorizeURL
+  })
+})
 
 app.get('/callback', async (req, res) => {
   if (!req.query.code) res.status(403).send("Not Allowed!")
@@ -37,8 +47,11 @@ app.get('/callback', async (req, res) => {
   const token = await spotifyApi.authorizationCodeGrant(req.query.code)
   req.session.token = token.body.access_token
   await spotifyApi.setAccessToken(req.session.token)
-  const html = await renderList()
-  res.send(html)
+  const html = await 
+  // res.send(html)
+  res.render('session', {
+    data: renderList()
+  })
 })
 
 app.get('/delete', async (req, res) => {
@@ -81,11 +94,16 @@ const listTrack = async () =>
 
 const renderList = async (req) => {
   const { keep, remove } = await listTrack()
-  let countKeep = 0
-  let countRemove = 0
-  for (k in keep) { countKeep += keep[k].tracks.length }
-  for (r in remove ) { countRemove += remove[r].tracks.length }
-  return `<html><body><BR/>REMOVE : ${countRemove}<BR />KEEP : ${countKeep}<BR /><a href="delete">delete</a></body></html>`
+  let unpopular_track_count = 0
+  let popular_track_count = 0
+  for (k in keep) { unpopular_track_count += keep[k].tracks.length }
+  for (r in remove) { popular_track_count += remove[r].tracks.length }
+  snobiness_score = unpopular_track_count / (popular_track_count + unpopular_track_count) * 110
+  return {
+    popular_track_count,
+    unpopular_track_count,
+    snobiness_score
+  }
 }
 
 const renderDeletion = async () => {
