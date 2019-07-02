@@ -62,8 +62,10 @@ app.get('/session', async (req, res) => {
 app.get('/delete', async (req, res) => {
   if (!req.session.token) res.status(403).send("Not Allowed!")
   await spotifyApi.setAccessToken(req.session.token)
-  const html = await renderDeletion()
-  res.send(html)
+  const popular_track_count = await renderDeletion()
+  res.render('confirm', {
+    data: { popular_track_count },
+  })
 })
 
 const listTrack = async () =>
@@ -126,7 +128,7 @@ const renderDeletion = async () => {
       }
     }
   }
-  return `<html><body><BR/>REMOVED : ${removeCount} tracks</body></html>`
+  return removeCount
 }
 
 
