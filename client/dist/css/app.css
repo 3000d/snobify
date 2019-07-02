@@ -17,11 +17,12 @@ html {
 
 body {
     align-items: center;
-    background: url("../img/cover.jpg") no-repeat center center;
+    background: url("../img/cover.jpg") no-repeat center top;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 5rem 0;
     min-height: 100vh;
     position: relative;
     z-index: 1;
@@ -60,13 +61,20 @@ body {
 }
 
 .main {
+    margin-top: 2rem;
     max-width: 740px;
     text-align: center;
 }
 
-.desc {
+.cta {
     font-size: 1.25rem;
     line-height: 1.25;
+    margin-bottom: 2em;
+}
+
+.cta.small {
+    font-size: 1rem;
+    line-height: 1.15;
 }
 
 .subtext {
@@ -79,8 +87,51 @@ body {
     border-radius: 5px;
     color: black;
     display: inline-block;
+    font-size: 1rem;
     font-weight: bold;
-    padding: .9rem 2rem;
+    padding: .9em 2em;
     text-align: center;
     text-decoration: none;
+}
+
+.button.white {
+    background-color: white;
+}
+
+.button.small {
+    font-size: .8rem;
+}
+
+hr {
+    margin: 2rem 0;
+    background-color: white;
+    border: none;
+    height: 1px;
+    opacity: .3;
+}
+
+.score-container {
+    align-items: center;
+    display: flex;
+    max-width: 400px;
+    justify-content: space-around;
+    margin: 1rem auto auto;
+}
+
+.score {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.big.score {
+    font-size: 1.3rem;
+}
+
+.score-desc {
+    font-size: 1em;
+}
+
+.score-number {
+    font-size: 2.5em;
+    font-weight: bold;
 }
