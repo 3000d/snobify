@@ -19,7 +19,7 @@ html {
 }
 
 .index {
-    background: var(--blue-color) url("../img/cover.jpg") no-repeat center top;
+    background: var(--blue-color) url("../img/cover-alt.jpg") no-repeat center top;
 }
 .session {
     background: var(--purple-color) url("../img/cover-02.jpg") no-repeat center top;
