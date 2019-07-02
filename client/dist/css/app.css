@@ -30,6 +30,7 @@ html {
 
 body {
     align-items: center;
+    background-size: cover !important;
     color: white;
     display: flex;
     flex-direction: column;
