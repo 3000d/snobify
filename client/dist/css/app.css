@@ -69,6 +69,11 @@ body {
     line-height: 1.25;
 }
 
+.subtext {
+    font-size: 0.7rem;
+    opacity: .7;
+}
+
 .button {
     background-color: var(--green-color);
     border-radius: 5px;
