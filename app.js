@@ -47,7 +47,7 @@ app.get('/callback', async (req, res) => {
   const token = await spotifyApi.authorizationCodeGrant(req.query.code)
   req.session.token = token.body.access_token
   await spotifyApi.setAccessToken(req.session.token)
-  const html = await 
+  const html = await
   // res.send(html)
   res.render('session', {
     data: renderList()
@@ -98,7 +98,7 @@ const renderList = async (req) => {
   let popular_track_count = 0
   for (k in keep) { unpopular_track_count += keep[k].tracks.length }
   for (r in remove) { popular_track_count += remove[r].tracks.length }
-  snobiness_score = unpopular_track_count / (popular_track_count + unpopular_track_count) * 110
+  snobiness_score = parseFloat(unpopular_track_count / (popular_track_count + unpopular_track_count) * 110).toFixed(2);
   return {
     popular_track_count,
     unpopular_track_count,
@@ -123,5 +123,18 @@ const renderDeletion = async () => {
   }
   return `<html><body><BR/>REMOVED : ${removeCount} tracks</body></html>`
 }
+
+
+app.get('/test/index', (req, res) => {
+  res.render('index');
+});
+app.get('/test/session', (req, res) => {
+  res.render('session');
+});
+app.get('/test/confirm', (req, res) => {
+  res.render('confirm');
+});
+
+
 
 app.listen(port, () => console.log(`Snobify app listening on port ${port}!`))

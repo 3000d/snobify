@@ -2,6 +2,10 @@
     --red-color: #EB1B32;
     --blue-color: #2B2068;
     --green-color: #00DA72;
+    --purple-color: #55257E;
+    --yellow-color: #F7984C;
+    --blue-color-2: #24206A;
+    --green-color-2: #73D970;
 }
 
 *, *:before, *:after {
@@ -9,15 +13,23 @@
 }
 
 html {
-    background-color: var(--blue-color);
     font-family: "HK Grotesk", Helvetica, Arial, sans-serif;
     font-size: 24px;
     position: relative;
 }
 
+.index {
+    background: var(--blue-color) url("../img/cover.jpg") no-repeat center top;
+}
+.session {
+    background: var(--purple-color) url("../img/cover-02.jpg") no-repeat center top;
+}
+.confirm {
+    background: var(--blue-color-2) url("../img/cover-03.jpg") no-repeat center top;
+}
+
 body {
     align-items: center;
-    background: url("../img/cover.jpg") no-repeat center top;
     color: white;
     display: flex;
     flex-direction: column;
@@ -56,6 +68,7 @@ body {
 .header h2 {
     font-size: 1rem;
     font-weight: normal;
+    margin-left: 4rem;
     text-align: center;
     width: 500px;
 }
@@ -123,15 +136,23 @@ hr {
     text-align: center;
 }
 
-.big.score {
-    font-size: 1.3rem;
-}
-
 .score-desc {
     font-size: 1em;
 }
 
 .score-number {
     font-size: 2.5em;
+    font-weight: bold;
+}
+
+.big {
+    font-size: 1.3rem;
+}
+
+.small {
+    font-size: .8rem;
+}
+
+.bold {
     font-weight: bold;
 }
