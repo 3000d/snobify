@@ -145,3 +145,6 @@ app.get('/test/confirm', (req, res) => {
 
 
 app.listen(port, () => console.log(`Snobify app listening on port ${port}!`))
+
+
+users.filter(user => u.PersonName === user.PersonName);
