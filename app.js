@@ -138,7 +138,7 @@ const generateCtaText = (score) => {
   } else if (score > 39 && score <= 79) {
     return "Not bad ! But you're still a long way from being hip. Take a leap and delete all those boring popular tracks !";
   } else if (score > 79) {
-    return "Wow so snob. Now you just have to delete what's left of boring tracks in your very hip music. Go ahead, you want to.";
+    return "Wow so snob. Now you just have to delete what's left of boring tracks in your very hip playlists. Go ahead, you want to.";
   }
 };
 

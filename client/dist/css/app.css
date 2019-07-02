@@ -64,7 +64,7 @@ body {
     height: 2px;
     position: absolute;
     left: 0;
-    right: 70px;
+    right: 100px;
 }
 
 .header h2 {
@@ -205,6 +205,10 @@ hr {
 
     .header h1 span {
         margin-left: 10px;
+    }
+
+    .header h1 span:after {
+        right: 55px;
     }
 
     .header h2 {
