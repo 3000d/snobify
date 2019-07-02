@@ -22,18 +22,18 @@
   <div class="score-container">
     <div class="score">
       <div class="score-desc">Popular</div>
-      <div class="score-number">54</div>
+      <div class="score-number">{{ popular_track_count }}</div>
     </div>
     <div class="score">
       <div class="score-desc">Unpopular</div>
-      <div class="score-number">120</div>
+      <div class="score-number">{{ unpopular_track_count }}</div>
     </div>
   </div>
 
   <div class="score-container">
     <div class="big score">
       <div class="score-desc">Your snobiness score:</div>
-      <div class="score-number">69%</div>
+      <div class="score-number">{{ snobiness_score }}%</div>
     </div>
   </div>
 
@@ -59,8 +59,10 @@
   </div>
 
   <hr>
-  <p class="subtext"><strong>Warning: <u>DELETING POPULAR TRACKS CANNOT BE UNDONE</u></strong>
-    and we decline any responsibility.</p>
+  <p class="subtext">
+    <strong>Warning: <u>DELETING POPULAR TRACKS CANNOT BE UNDONE</u></strong>
+    and we decline any responsibility.
+  s</p>
 </main>
 </body>
 </html>
