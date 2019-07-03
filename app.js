@@ -5,7 +5,7 @@ const path = require('path')
 const dotenv = require('dotenv')
 const twit = require('twig')
 
-const POPULARITY_TRESHOLD = 5
+const POPULARITY_TRESHOLD = 10
 
 dotenv.config()
 
