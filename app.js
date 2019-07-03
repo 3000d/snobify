@@ -5,6 +5,8 @@ const path = require('path')
 const dotenv = require('dotenv')
 const twit = require('twig')
 
+const POPULARITY_TRESHOLD = 5
+
 dotenv.config()
 
 const scopes = ['user-read-private', 'user-read-email', 'playlist-read-private', 'playlist-modify-private', 'playlist-modify-public'],
@@ -81,13 +83,13 @@ const listTrack = async () =>
       remove.push(
         {
           playlist: playlists.body.items[p].id,
-          tracks: tracks.filter(t => t.track.popularity > 0).map(t => ({ name: t.track.name, uri: t.track.uri, pop: t.track.popularity }))
+          tracks: tracks.filter(t => t.track.popularity > POPULARITY_TRESHOLD).map(t => ({ name: t.track.name, uri: t.track.uri, pop: t.track.popularity }))
         }
       )
       keep.push(
         {
           playlist: playlists.body.items[p].id,
-          tracks: tracks.filter(t => t.track.popularity < 1).map(t => ({ name: t.track.name, uri: t.track.uri, pop: t.track.popularity }))
+          tracks: tracks.filter(t => t.track.popularity <= POPULARITY_TRESHOLD).map(t => ({ name: t.track.name, uri: t.track.uri, pop: t.track.popularity }))
         }
       )
     }
