@@ -22,7 +22,7 @@ const spotifyApi = new SpotifyWebApi({
 
 const port = 3000
 
-const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
+const authorizeURL = spotifyApi.createAuthorizeURL(scopes)
 
 const sess = {
   secret: process.env.SECRET_COOKIE,
@@ -50,7 +50,6 @@ app.get('/callback', async (req, res) => {
   req.session.token = token.body.access_token
   await spotifyApi.setAccessToken(req.session.token)
   res.redirect('/session')
-
 })
 
 app.get('/session', async (req, res) => {
@@ -70,8 +69,7 @@ app.get('/delete', async (req, res) => {
   })
 })
 
-const listTrack = async () =>
-{
+const listTrack = async () => {
   const playlists = await spotifyApi.getUserPlaylists()
   let remove = []
   let keep = []
@@ -107,7 +105,7 @@ const renderList = async (req) => {
   let popular_track_count = 0
   for (k in keep) { unpopular_track_count += keep[k].tracks.length }
   for (r in remove) { popular_track_count += remove[r].tracks.length }
-  snobiness_score = parseFloat(unpopular_track_count / (popular_track_count + unpopular_track_count) * 110).toFixed(2);
+  snobiness_score = parseFloat(unpopular_track_count / (popular_track_count + unpopular_track_count) * 110).toFixed(2)
   return {
     popular_track_count,
     unpopular_track_count,
@@ -125,8 +123,7 @@ const renderDeletion = async () => {
       try {
         await spotifyApi.removeTracksFromPlaylist(remove[r].playlist, remove[r].tracks.map(t => ({ uri: t.uri })))
       }
-      catch(err)
-      {
+      catch(err) {
         console.log(err)
       }
     }
@@ -136,20 +133,22 @@ const renderDeletion = async () => {
 
 const generateCtaText = (score) => {
   if (score <= 39) {
-    return "You enjoy music everyone likes, boring. Why not delete all your popular tracks and be hip ?";
+    return "You enjoy music everyone likes, boring. Why not delete all your popular tracks and be hip ?"
   } else if (score > 39 && score <= 79) {
-    return "Not bad ! But you're still a long way from being hip. Take a leap and delete all those boring popular tracks !";
+    return "Not bad ! But you're still a long way from being hip. Take a leap and delete all those boring popular tracks !"
   } else if (score > 79) {
-    return "Wow so snob. Now you just have to delete what's left of boring tracks in your very hip playlists. Go ahead, you want to.";
+    return "Wow so snob. Now you just have to delete what's left of boring tracks in your very hip playlists. Go ahead, you want to."
+  } else if (score > 99) {
+    return "Respect!"
   }
-};
-
+}
 
 app.get('/test/index', (req, res) => {
-  res.render('index');
-});
+  res.render('index')
+})
+
 app.get('/test/session', (req, res) => {
-  const score = Math.floor(Math.random() * 110);
+  const score = Math.floor(Math.random() * 110)
   res.render('session', {
     data: {
       popular_track_count: 7340,
@@ -157,11 +156,11 @@ app.get('/test/session', (req, res) => {
       snobiness_score: score,
       cta_text: generateCtaText(score)
     }
-  });
-});
+  })
+})
 app.get('/test/confirm', (req, res) => {
-  res.render('confirm');
-});
+  res.render('confirm')
+})
 
 
 
