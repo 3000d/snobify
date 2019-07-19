@@ -7,3 +7,7 @@ Erase songs too popular for your stature.
 `docker run -d -e VIRTUAL_HOST=snobbify.me snobify:x.x`
 
 (require jwilder/nginx-proxy for reverse proxy virtual host in docker)
+
+###TODO: 
+* Loop thru Spotify Playlist & track Pagination
+
